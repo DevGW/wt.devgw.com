@@ -71,7 +71,7 @@ def dashboard():
         weekly_target = calculate_weekly_target(latest_weight.weight_kg, goal.goal_weight_kg, date.today(),
                                                 goal.target_date)
 
-    return render_template('main/dashboard.html',
+    return render_template('dashboard.html',
                            user=user,
                            latest_weight=latest_weight,
                            bmi_value=bmi_value,
@@ -101,7 +101,7 @@ def add_weight():
         db.session.commit()
         flash("Weight entry added successfully.")
         return redirect(url_for('main.dashboard'))
-    return render_template('main/add_weight.html')
+    return render_template('add_weight.html')
 
 
 @bp.route('/set_goal', methods=['GET', 'POST'])
@@ -137,7 +137,7 @@ def set_goal():
         db.session.commit()
         flash("Goal updated successfully.")
         return redirect(url_for('main.dashboard'))
-    return render_template('main/set_goal.html')
+    return render_template('set_goal.html')
 
 
 @bp.route('/weight_history')
@@ -148,7 +148,7 @@ def weight_history():
     """
     user = User.query.get(session['user_id'])
     entries = WeightEntry.query.filter_by(user_id=user.id).order_by(WeightEntry.date.desc()).all()
-    return render_template('main/weight_history.html', entries=entries, unit=user.unit_preference)
+    return render_template('weight_history.html', entries=entries, unit=user.unit_preference)
 
 
 @bp.route('/bmi_history')
@@ -159,4 +159,4 @@ def bmi_history():
     """
     user = User.query.get(session['user_id'])
     entries = BMIEntry.query.filter_by(user_id=user.id).order_by(BMIEntry.date.desc()).all()
-    return render_template('main/bmi_history.html', entries=entries)
+    return render_template('bmi_history.html', entries=entries)
