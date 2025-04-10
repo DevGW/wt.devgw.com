@@ -10,7 +10,7 @@ def add_weight_history():
     app = create_app()
     with app.app_context():
         # Look up the user to whom we'll add these entries
-        user = User.query.filter_by(username='myusername').first()
+        user = User.query.filter_by(username='rogue').first()
         if not user:
             print("User not found. Aborting.")
             return
