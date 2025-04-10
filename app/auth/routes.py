@@ -47,7 +47,7 @@ def login():
             session['user_id'] = user.id
             return redirect(url_for('main.dashboard'))
         flash("Invalid username or password.")
-    return render_template('auth/login.html')
+    return render_template('login.html')
 
 @bp.route('/logout')
 def logout():
