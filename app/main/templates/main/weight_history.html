@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WeightTracker - Weight History</title>
+  </head>
+  <body>
+    <h2>Weight History</h2>
+    <table border="1">
+      <tr>
+        <th>Date</th>
+        <th>Weight ({{ unit }})</th>
+      </tr>
+      {% for entry in entries %}
+      <tr>
+        <td>{{ entry.date.strftime('%Y-%m-%d') }}</td>
+        <td>
+          {% if unit == 'imperial' %}
+            {{ (entry.weight_kg * 2.20462)|round(2) }} lbs
+          {% else %}
+            {{ entry.weight_kg|round(2) }} kg
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WeightTracker - Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <h2>Dashboard</h2>
+    <p>Welcome, {{ user.username }}!</p>
+    {% if latest_weight %}
+      <p>Latest Weight: {{ latest_weight.weight_kg | round(2) }} kg
+         {% if user.unit_preference == 'imperial' %}
+         ({{ (latest_weight.weight_kg * 2.20462)|round(2) }} lbs)
+         {% endif %}
+      </p>
+    {% endif %}
+    {% if bmi_value %}
+      <p>BMI: {{ bmi_value|round(2) }} ({{ bmi_cat }})</p>
+    {% endif %}
+    {% if weekly_target %}
+      <p>Weekly Target: Lose approximately {{ weekly_target|round(2) }} kg per week.</p>
+    {% endif %}
+    {% if goal %}
+      <p>Goal: Reach {{ goal.goal_weight_kg|round(2) }} kg by {{ goal.target_date }}</p>
+    {% endif %}
+    <div id="chart"></div>
+    <script>
+      var graphData = {{ graphJSON | safe }};
+      Plotly.newPlot('chart', graphData.data, graphData.layout);
+    </script>
+    <br>
+    <a href="{{ url_for('main.add_weight') }}">Add Weight Entry</a><br>
+    <a href="{{ url_for('main.set_goal') }}">Set/Update Goal</a><br>
+    <a href="{{ url_for('main.weight_history') }}">Weight History</a><br>
+    <a href="{{ url_for('main.bmi_history') }}">BMI History</a><br>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </body>
+</html>

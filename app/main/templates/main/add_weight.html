@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WeightTracker - Add Weight</title>
+  </head>
+  <body>
+    <h2>Add Weight Entry</h2>
+    <form method="post">
+      <label>Weight:</label>
+      <input type="text" name="weight" required>
+      <select name="unit">
+        <option value="kg">kg</option>
+        <option value="lbs">lbs</option>
+      </select>
+      <input type="submit" value="Add">
+    </form>
+    <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+  </body>
+</html>

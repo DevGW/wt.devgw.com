@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WeightTracker - Set Goal</title>
+  </head>
+  <body>
+    <h2>Set/Update Weight Goal</h2>
+    <form method="post">
+      <label>Goal Weight:</label>
+      <input type="text" name="goal_weight" required>
+      <select name="unit">
+        <option value="kg">kg</option>
+        <option value="lbs">lbs</option>
+      </select><br>
+      <label>Target Date (YYYY-MM-DD):</label>
+      <input type="text" name="target_date" required><br>
+      <input type="submit" value="Set Goal">
+    </form>
+    <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+  </body>
+</html>

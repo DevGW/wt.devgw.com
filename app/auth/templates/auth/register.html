@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WeightTracker - Register</title>
+  </head>
+  <body>
+    <h2>Register</h2>
+    <form method="post">
+      <label>Username:</label>
+      <input type="text" name="username" required><br>
+      <label>Password:</label>
+      <input type="password" name="password" required><br>
+      <label>Unit Preference:</label>
+      <select name="unit_preference">
+        <option value="metric">Metric (kg, cm)</option>
+        <option value="imperial">Imperial (lbs, inches)</option>
+      </select><br>
+      <label>Height (cm):</label>
+      <input type="text" name="height"><br>
+      <input type="submit" value="Register">
+    </form>
+    <a href="{{ url_for('auth.login') }}">Already have an account? Login here.</a>
+  </body>
+</html>

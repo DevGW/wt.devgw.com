@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WeightTracker - BMI History</title>
+  </head>
+  <body>
+    <h2>BMI History</h2>
+    <table border="1">
+      <tr>
+        <th>Date</th>
+        <th>BMI</th>
+        <th>Category</th>
+      </tr>
+      {% for entry in entries %}
+      <tr>
+        <td>{{ entry.date.strftime('%Y-%m-%d') }}</td>
+        <td>{{ entry.bmi_value|round(2) }}</td>
+        <td>{{ entry.category }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+  </body>
+</html>
